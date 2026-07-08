@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using WebcamOverlay.Camera;
+using WebcamOverlay.Helpers;
 
 namespace WebcamOverlay
 {
@@ -30,7 +32,14 @@ namespace WebcamOverlay
         
         private void OnFrameReceived(Bitmap bitmap)
         {
-            bitmap.Dispose();
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                BitmapSource bitmapSource = BitmapSourceConverter.Convert(bitmap);
+
+                CameraImage.Source = bitmapSource;
+
+                bitmap.Dispose();
+            }));
         }
     }
 }

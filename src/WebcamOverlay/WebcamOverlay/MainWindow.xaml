@@ -7,11 +7,13 @@
         MinWidth="160"
         MinHeight="120"
         Topmost="True">
-    <Grid>
-        <TextBlock
-            Text="Webcam Overlay"
-            FontSize="32"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"/>
+
+    <Grid Background="Black">
+
+        <Image
+            x:Name="CameraImage"
+            Stretch="Uniform"/>
+
     </Grid>
+
 </Window>
