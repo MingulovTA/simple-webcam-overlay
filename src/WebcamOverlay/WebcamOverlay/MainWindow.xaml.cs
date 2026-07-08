@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WebcamOverlay.Camera;
 
 namespace WebcamOverlay
 {
@@ -20,9 +10,27 @@ namespace WebcamOverlay
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly CameraService _cameraService = new CameraService();
+        
         public MainWindow()
         {
             InitializeComponent();
+
+            _cameraService.FrameReceived += OnFrameReceived;
+            _cameraService.Start();
+        }
+        
+        protected override void OnClosed(EventArgs e)
+        {
+            _cameraService.FrameReceived -= OnFrameReceived;
+            _cameraService.Dispose();
+
+            base.OnClosed(e);
+        }
+        
+        private void OnFrameReceived(Bitmap bitmap)
+        {
+            bitmap.Dispose();
         }
     }
 }
