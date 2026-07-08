@@ -1,0 +1,17 @@
+﻿<Window x:Class="WebcamOverlay.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Webcam Overlay"
+        Width="640"
+        Height="480"
+        MinWidth="160"
+        MinHeight="120"
+        Topmost="True">
+    <Grid>
+        <TextBlock
+            Text="Webcam Overlay"
+            FontSize="32"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
+    </Grid>
+</Window>
