@@ -19,7 +19,12 @@ namespace WebcamOverlay
             InitializeComponent();
 
             _cameraService.FrameReceived += OnFrameReceived;
-            _cameraService.Start();
+            var cameras = _cameraService.GetAvailableCameras();
+
+            if (cameras.Count > 0)
+            {
+                _cameraService.Start(cameras[0]);
+            }
         }
         
         protected override void OnClosed(EventArgs e)

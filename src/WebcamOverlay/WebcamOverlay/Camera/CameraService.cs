@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using AForge.Video;
 using AForge.Video.DirectShow;
@@ -14,21 +16,19 @@ namespace WebcamOverlay.Camera
         
         public event Action<Bitmap> FrameReceived;
         
-        public void Start()
+        public void Start(CameraInfo camera)
         {
-            _cameras = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            if (camera == null)
+                throw new ArgumentNullException(nameof(camera));
 
-            if (_cameras.Count == 0)
-                throw new InvalidOperationException("No camera found.");
+            Stop();
 
-            _videoDevice = new VideoCaptureDevice(_cameras[0].MonikerString);
+            _videoDevice = new VideoCaptureDevice(camera.MonikerString);
 
             _videoDevice.NewFrame += OnNewFrame;
 
             _videoDevice.Start();
         }
-        
-        
 
         public void Stop()
         {
@@ -44,6 +44,16 @@ namespace WebcamOverlay.Camera
             }
 
             _videoDevice = null;
+        }
+        
+        public IReadOnlyList<CameraInfo> GetAvailableCameras()
+        {
+            FilterInfoCollection cameras = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+
+            return cameras
+                .Cast<FilterInfo>()
+                .Select(camera => new CameraInfo(camera.Name, camera.MonikerString))
+                .ToList();
         }
 
         public void Dispose()
