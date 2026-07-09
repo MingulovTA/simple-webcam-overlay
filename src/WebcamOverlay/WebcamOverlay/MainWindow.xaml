@@ -12,7 +12,15 @@
 
         <Image
             x:Name="CameraImage"
-            Stretch="Uniform"/>
+            Stretch="Uniform"
+            Visibility="Collapsed"/>
+        
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel
+                x:Name="CameraListPanel"
+                Margin="20"
+                VerticalAlignment="Center"/>
+        </ScrollViewer>
 
     </Grid>
 
