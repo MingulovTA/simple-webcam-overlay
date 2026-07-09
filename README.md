@@ -14,8 +14,6 @@ Built with WPF (.NET Framework 4.8) and AForge.NET.
 
 - 📷 Live webcam preview 
 - 🖥️ Always-on-top window
-- 🪟 Borderless overlay mode
-- ↔️ Resizable and draggable window
 - 🎥 Camera selection screen 
 - 🔄 Multiple application instances supported 
 - 🧹 Proper camera resource cleanup
