@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using WebcamOverlay.Camera;
 using WebcamOverlay.Helpers;
@@ -61,6 +62,14 @@ namespace WebcamOverlay
 
                 bitmap.Dispose();
             }));
+        }
+
+        private void Window_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 1 && e.ButtonState == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
     }
 }
