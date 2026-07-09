@@ -38,7 +38,7 @@ Download the latest release from the Releases page.
 
 ### Clone the repository
 
-git clone https://github.com/YOUR_USERNAME/simple-webcam-overlay.git
+git clone https://github.com/MingulovTA/simple-webcam-overlay.git
 
 cd simple-webcam-overlay
 
